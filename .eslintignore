@@ -1,0 +1,3 @@
+.eslintrc.cjs
+src/**/*.js
+dist/**

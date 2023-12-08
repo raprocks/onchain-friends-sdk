@@ -1,0 +1,8 @@
+{
+  "$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/nodemon.json",
+  "restartable": "rs",
+  "ignore": [".git", "node_modules/", "dist/", "coverage/"],
+  "watch": ["src/"],
+  "ext": "js, json, ts",
+  "env": { "TS_NODE": true, "NODE_ENV": "DEVELOPMENT" }
+}
