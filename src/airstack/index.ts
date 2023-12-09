@@ -1,5 +1,5 @@
 import { init, fetchQuery } from "@airstack/node";
-import { lensFollowingQuery,lensFollowerQuery ,farcasterFollowerQuery,farcasterFollowingQuery} from "./queries";
+import { lensFollowingQuery,lensFollowerQuery ,farcasterFollowerQuery,farcasterFollowingQuery, tokenReceiveQuery} from "./queries";
 import { QueryResponse } from "../types/query";
 
 export default class Airstack {
@@ -52,6 +52,14 @@ export default class Airstack {
     return data;
   }
 
-
+  async getTokenReceive(address: string){
+    const { data, error } = await fetchQuery(tokenReceiveQuery, {
+      user: address
+    }) as QueryResponse;
+    if (error) {
+      throw new Error(error.message);
+    }
+    return data;
+  }
 
 }
