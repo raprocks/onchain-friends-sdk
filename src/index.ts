@@ -1,4 +1,3 @@
-import { Wallet } from "ethers";
 import { Client } from "@xmtp/xmtp-js";
 
 // You'll want to replace this with a wallet from your application
@@ -8,20 +7,20 @@ import { Client } from "@xmtp/xmtp-js";
 // const xmtp = await Client.create(wallet, { env: "dev" });
 // console.log("Client created", xmtp.address);
 
-export const sendInvite = async(client: Client, toAddress: string) => {
-    const isIdentityCreated = await client.canMessage(toAddress);
-    console.log("Can message: " + isIdentityCreated);
-    if (!isIdentityCreated) {
-        console.log("The recipient is not on the dev network.");
-        return false;
-    }
-    const conversation = await client.conversations.newConversation(toAddress);
-    console.log(`Conversation created with ${conversation.peerAddress}`);
-    if(!conversation) {
-        console.log("Conversation not created");
-        return false;
-    }
-    const message = await conversation.send("gm from the quickstart.");
-    console.log(`Message sent: "${message.content}"`);
-    return true;
+export const sendInvite = async (client: Client, toAddress: string) => {
+  const isIdentityCreated = await client.canMessage(toAddress);
+  console.log("Can message: " + isIdentityCreated);
+  if (!isIdentityCreated) {
+    console.log("The recipient is not on the dev network.");
+    return false;
+  }
+  const conversation = await client.conversations.newConversation(toAddress);
+  console.log(`Conversation created with ${conversation.peerAddress}`);
+  if (!conversation) {
+    console.log("Conversation not created");
+    return false;
+  }
+  const message = await conversation.send("gm from the quickstart.");
+  console.log(`Message sent: "${message.content}"`);
+  return true;
 };
