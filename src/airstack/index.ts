@@ -1,4 +1,4 @@
-import { init, fetchQuery } from "@airstack/node";
+import { init } from "@airstack/node";
 
 export default class Airstack {
   APIKEY: string;
