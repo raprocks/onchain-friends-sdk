@@ -23,7 +23,7 @@ query MyQuery($user: Identity!) {
   }
 `;
 
-export const lensFollowerQuery=`
+export const lensFollowerQuery = `
 query MyQuery($user: Identity!) {
   SocialFollowers(
     input: {filter: {identity: {_eq: $user}, dappName: {_eq: lens}}, blockchain: ALL, limit: 50}
@@ -48,7 +48,7 @@ query MyQuery($user: Identity!) {
 }
 `;
 
-export const farcasterFollowerQuery=`
+export const farcasterFollowerQuery = `
 query MyQuery($user: Identity!) {
   SocialFollowers(
     input: {filter: {identity: {_eq: $user}, dappName: {_eq: farcaster}}, blockchain: ALL, limit: 200}
@@ -74,7 +74,7 @@ query MyQuery($user: Identity!) {
 }
 `;
 
-export const farcasterFollowingQuery=`
+export const farcasterFollowingQuery = `
 query MyQuery($user: Identity!) {
   SocialFollowings(
     input: {filter: {identity: {_eq: $user}, dappName: {_eq: farcaster}}, blockchain: ALL, limit: 200}
@@ -99,7 +99,7 @@ query MyQuery($user: Identity!) {
 }
 `;
 
-export const tokenReceiveQuery=`
+export const tokenReceiveQuery = `
 query MyQuery($user: Identity!) {
   Ethereum: TokenTransfers(
     input: {filter: {to: {_eq: $user}}, blockchain: ethereum, limit: 200}
@@ -164,7 +164,7 @@ query MyQuery($user: Identity!) {
 }
 `;
 
-export const tokenSentQuery=`
+export const tokenSentQuery = `
 query TokenSent($user: Identity!) {
     Ethereum: TokenTransfers(
       input: {filter: {from: {_eq: $user}}, blockchain: ethereum, limit: 200}
@@ -228,4 +228,3 @@ query TokenSent($user: Identity!) {
     }
   }
 `;
-
