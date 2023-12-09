@@ -1,5 +1,4 @@
 import { init, fetchQuery } from "@airstack/node"; // or @airstack/airstack-react for frontend javascript
-import formatLensFollowingsData from "../utils/formatLensFollowingsData.js";
 
 // get your API key at https://app.airstack.xyz/profile-settings/api-keys
 init("118f7b49bcf804ce9af37bbfe3cad9f24");
@@ -59,9 +58,7 @@ const fetchLensFollowings = async (address, existingUsers = []) => {
         data?.SocialFollowings?.Following?.map(
           (following) => following.followingAddress
         ) ?? [];
-      recommendedUsers = [
-        ...formatLensFollowingsData(followings, recommendedUsers),
-      ];
+      recommendedUsers = followings;
       if (!hasNextPage) {
         break;
       } else {

@@ -3,10 +3,10 @@ import { init, fetchQuery } from "@airstack/node"; // or @airstack/airstack-reac
 // get your API key at https://app.airstack.xyz/profile-settings/api-keys
 init("118f7b49bcf804ce9af37bbfe3cad9f24");
 
-const socialFollowingsQuery = `
+const socialFollowersQuery = `
 query MyQuery($user: Identity!) {
   SocialFollowers(
-    input: {filter: {identity: {_eq: $user}, dappName: {_eq: lens}}, blockchain: ALL, limit: 200}
+    input: {filter: {identity: {_eq: $user}, dappName: {_eq: farcaster}}, blockchain: ALL, limit: 200}
   ) {
     Follower {
       followerAddress {
@@ -27,7 +27,7 @@ query MyQuery($user: Identity!) {
           isXMTPEnabled
         }
         mutualFollowing: socialFollowings(
-          input: {filter: {identity: {_eq: $user}, dappName: {_eq: lens}}}
+          input: {filter: {identity: {_eq: $user}, dappName: {_eq: farcaster}}}
         ) {
           Following {
             followingAddress {
@@ -43,22 +43,22 @@ query MyQuery($user: Identity!) {
 }
 `;
 
-const fetchLensFollowers = async (address, existingUsers = []) => {
+const fetchFarcasterFollowers = async (address, existingUsers = []) => {
   let res;
   let recommendedUsers = [...existingUsers];
   while (true) {
     if (!res) {
-      res = await fetchQuery(socialFollowingsQuery, {
+      res = await fetchQuery(socialFollowersQuery, {
         user: address,
       });
     }
     const { data, error, hasNextPage, getNextPage } = res ?? {};
     if (!error) {
-      const followings =
+      const followers =
         data?.SocialFollowers?.Follower?.map(
           (follower) => follower.followerAddress
         ) ?? [];
-      recommendedUsers = followings;
+      recommendedUsers = followers;
       if (!hasNextPage) {
         break;
       } else {
@@ -72,4 +72,4 @@ const fetchLensFollowers = async (address, existingUsers = []) => {
   return recommendedUsers;
 };
 
-export default fetchLensFollowers;
+export default fetchFarcasterFollowers;
