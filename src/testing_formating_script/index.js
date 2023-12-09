@@ -30,12 +30,17 @@ const fetchOnChainGraphData = async (address) => {
   return recommendedUsers;
 };
 
-const res= await fetchOnChainGraphData("vitalik.eth")
-console.log(res)
+
+// const res= await fetchOnChainGraphData("vitalik.eth")
+// console.log(res)
 // const onChainGraphUsers = await fetchOnChainGraphData("vitalik.eth");
 // const onChainGraphUsersWithScore = onChainGraphUsers.map(user => calculatingScore(user));
 // //console.log(onChainGraphUsersWithScore);
 
 // const finalOnChainGraphUsers = sortByScore(onChainGraphUsersWithScore);
 // const res=finalOnChainGraphUsers.slice(0,5)
+
 // console.log(res);
+// console.log(res);
+fetchOnChainGraphData('vitalik.eth').then(res => console.dir(res, { depth: null }))
+
