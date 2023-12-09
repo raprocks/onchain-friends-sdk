@@ -56,7 +56,7 @@ query MyQuery($user: Identity!) {
     Follower {
       followerAddress {
         addresses
-        socials(input: {filter: {dappName: {_eq: lens}}}) {
+        socials(input: {filter: {dappName: {_eq: farcaster}}}) {
           dappName
           blockchain
           profileName
@@ -82,7 +82,7 @@ query MyQuery($user: Identity!) {
     Following {
       followingAddress {
         addresses
-        socials(input: {filter: {dappName: {_eq: lens}}}){
+        socials(input: {filter: {dappName: {_eq: farcaster}}}){
           dappName
           blockchain
           profileName
@@ -107,7 +107,7 @@ query MyQuery($user: Identity!) {
     TokenTransfer {
       account: to {
         addresses
-        socials(input: {filter: {dappName: {_eq: lens}}}) {
+        socials{
           dappName
           blockchain
           profileName
@@ -127,7 +127,7 @@ query MyQuery($user: Identity!) {
     TokenTransfer {
       account: to {
         addresses
-        socials(input: {filter: {dappName: {_eq: lens}}}) {
+        socials{
           dappName
           blockchain
           profileName
@@ -147,7 +147,7 @@ query MyQuery($user: Identity!) {
     TokenTransfer {
       account: to {
         addresses
-        socials(input: {filter: {dappName: {_eq: lens}}}) {
+        socials{
           dappName
           blockchain
           profileName
