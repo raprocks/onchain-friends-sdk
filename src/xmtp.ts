@@ -14,7 +14,9 @@ export const sendInvite = async (client: Client, toAddress: string) => {
     console.log("Conversation not created");
     return false;
   }
-  const message = await conversation.send("gm from the quickstart.");
+  const message = await conversation.send(
+    `${new Date().toISOString()} gm from the quickstart.`,
+  );
   console.log(`Message sent: "${message.content}"`);
   return true;
 };
