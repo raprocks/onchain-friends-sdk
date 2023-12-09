@@ -73,3 +73,28 @@ query MyQuery($user: Identity!) {
   }
 }
 `;
+
+export const farcasterFollowingQuery=`
+query MyQuery($user: Identity!) {
+  SocialFollowings(
+    input: {filter: {identity: {_eq: $user}, dappName: {_eq: farcaster}}, blockchain: ALL, limit: 200}
+  ) {
+    Following {
+      followingAddress {
+        addresses
+        socials(input: {filter: {dappName: {_eq: lens}}}){
+          dappName
+          blockchain
+          profileName
+          profileImage
+          profileTokenId
+          profileTokenAddress
+        }
+        xmtp {
+          isXMTPEnabled
+        }
+      }
+    }
+  }
+}
+`;
