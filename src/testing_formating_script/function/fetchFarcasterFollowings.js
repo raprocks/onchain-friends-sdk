@@ -1,4 +1,5 @@
-import { init, fetchQuery } from "@airstack/node"; // or @airstack/airstack-react for frontend javascript
+import { init, fetchQueryWithPagination } from "@airstack/node"; // or @airstack/airstack-react for frontend javascript
+import formatFarcasterFollowingsData from "../utils/formatFarcasterFollowingsData.js";
 
 // get your API key at https://app.airstack.xyz/profile-settings/api-keys
 init("118f7b49bcf804ce9af37bbfe3cad9f24");
@@ -48,7 +49,7 @@ const fetchFarcasterFollowings = async (address, existingUsers = []) => {
   let recommendedUsers = [...existingUsers];
   while (true) {
     if (!farcasterFollowingsDataResponse) {
-      farcasterFollowingsDataResponse = await fetchQuery(
+      farcasterFollowingsDataResponse = await fetchQueryWithPagination(
         socialFollowingsQuery,
         {
           user: address,
@@ -66,7 +67,9 @@ const fetchFarcasterFollowings = async (address, existingUsers = []) => {
         farcasterFollowingsData?.SocialFollowings?.Following?.map(
           following => following.followingAddress
         ) ?? [];
-      recommendedUsers = followings;
+      recommendedUsers = [
+        ...formatFarcasterFollowingsData(followings, recommendedUsers),
+      ];
       if (!farcasterFollowingsHasNextPage) {
         break;
       } else {

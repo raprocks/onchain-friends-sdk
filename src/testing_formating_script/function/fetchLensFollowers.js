@@ -1,4 +1,5 @@
 import { init, fetchQuery } from "@airstack/node"; // or @airstack/airstack-react for frontend javascript
+import formatLensFollowersData from "../utils/formatLensFollowersData.js";
 
 // get your API key at https://app.airstack.xyz/profile-settings/api-keys
 init("118f7b49bcf804ce9af37bbfe3cad9f24");
@@ -6,7 +7,7 @@ init("118f7b49bcf804ce9af37bbfe3cad9f24");
 const socialFollowingsQuery = `
 query MyQuery($user: Identity!) {
   SocialFollowers(
-    input: {filter: {identity: {_eq: $user}, dappName: {_eq: lens}}, blockchain: ALL, limit: 200}
+    input: {filter: {identity: {_eq: $user}, dappName: {_eq: lens}}, blockchain: ALL, limit: 50}
   ) {
     Follower {
       followerAddress {
@@ -58,7 +59,9 @@ const fetchLensFollowers = async (address, existingUsers = []) => {
         data?.SocialFollowers?.Follower?.map(
           (follower) => follower.followerAddress
         ) ?? [];
-      recommendedUsers = followings;
+      recommendedUsers = [
+        ...formatLensFollowersData(followings, recommendedUsers),
+      ];
       if (!hasNextPage) {
         break;
       } else {

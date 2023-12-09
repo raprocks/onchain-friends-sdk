@@ -1,4 +1,5 @@
-import { init, fetchQuery } from "@airstack/node"; // or @airstack/airstack-react for frontend javascript
+import { init, fetchQueryWithPagination } from "@airstack/node"; // or @airstack/airstack-react for frontend javascript
+import formatLensFollowingsData from "../utils/formatLensFollowingsData.js";
 
 // get your API key at https://app.airstack.xyz/profile-settings/api-keys
 init("118f7b49bcf804ce9af37bbfe3cad9f24");
@@ -48,7 +49,7 @@ const fetchLensFollowings = async (address, existingUsers = []) => {
   let recommendedUsers = [...existingUsers];
   while (true) {
     if (!res) {
-      res = await fetchQuery(socialFollowingsQuery, {
+      res = await fetchQueryWithPagination(socialFollowingsQuery, {
         user: address,
       });
     }
@@ -58,7 +59,9 @@ const fetchLensFollowings = async (address, existingUsers = []) => {
         data?.SocialFollowings?.Following?.map(
           (following) => following.followingAddress
         ) ?? [];
-      recommendedUsers = followings;
+      recommendedUsers = [
+        ...formatLensFollowingsData(followings, recommendedUsers),
+      ];
       if (!hasNextPage) {
         break;
       } else {
@@ -73,4 +76,3 @@ const fetchLensFollowings = async (address, existingUsers = []) => {
 };
 
 export default fetchLensFollowings;
-
