@@ -1,5 +1,11 @@
 # @onchain/friends
 
+## 0.2.2
+
+### Patch Changes
+
+- remove config values
+
 ## 0.2.1
 
 ### Patch Changes
