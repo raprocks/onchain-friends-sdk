@@ -1,6 +1,6 @@
 {
   "name": "@onchain/friends",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "OnChain Friends SDK!",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
