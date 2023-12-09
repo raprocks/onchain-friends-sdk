@@ -18,7 +18,7 @@
     "release": "pnpm run lint && pnpm run test && pnpm run build && changeset publish"
   },
   "keywords": [],
-  "author": "",
+  "author": "OnChainFriendsTeam",
   "license": "MIT",
   "dependencies": {
     "@airstack/node": "^0.0.5",
