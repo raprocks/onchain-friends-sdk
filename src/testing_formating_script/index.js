@@ -11,7 +11,7 @@ const fetchOnChainGraphData = async (address) => {
   let recommendedUsers = [];
   const fetchFunctions = [
     fetchLensFollowing,
-    fetchLensFollowers
+    // fetchLensFollowers
 
   ];
   for (const func of fetchFunctions) {
@@ -20,10 +20,11 @@ const fetchOnChainGraphData = async (address) => {
   return recommendedUsers;
 };
 
-const onChainGraphUsers = await fetchOnChainGraphData("vitalik.eth");
-const onChainGraphUsersWithScore = onChainGraphUsers.map(user => calculatingScore(user));
-//console.log(onChainGraphUsersWithScore);
+// const onChainGraphUsers = await fetchOnChainGraphData("vitalik.eth");
+// const onChainGraphUsersWithScore = onChainGraphUsers.map(user => calculatingScore(user));
+// //console.log(onChainGraphUsersWithScore);
 
-const finalOnChainGraphUsers = sortByScore(onChainGraphUsersWithScore);
-const res=finalOnChainGraphUsers.slice(0,5)
-console.log(res);
+// const finalOnChainGraphUsers = sortByScore(onChainGraphUsersWithScore);
+// const res=finalOnChainGraphUsers.slice(0,5)
+// console.log(res);
+fetchOnChainGraphData('vitalik.eth').then(res => console.dir(res, { depth: null }))
