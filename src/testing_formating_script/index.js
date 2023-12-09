@@ -16,12 +16,12 @@ import sortByScore from "./sort.js";
 const fetchOnChainGraphData = async (address) => {
   let recommendedUsers = [];
   const fetchFunctions = [
-    //fetchLensFollowing,
-    //fetchLensFollowers,
-    //fetchFarcasterFollowings,
+    fetchLensFollowing,
+    fetchLensFollowers,
+    fetchFarcasterFollowings,
     //fetchFarcasterFollowers,
     fetchTokenSent,
-    //fetchTokenReceived
+    fetchTokenReceived
 
   ];
   for (const func of fetchFunctions) {
@@ -30,12 +30,12 @@ const fetchOnChainGraphData = async (address) => {
   return recommendedUsers;
 };
 
-const res= await fetchOnChainGraphData("vitalik.eth")
-console.log(res)
-// const onChainGraphUsers = await fetchOnChainGraphData("vitalik.eth");
-// const onChainGraphUsersWithScore = onChainGraphUsers.map(user => calculatingScore(user));
-// //console.log(onChainGraphUsersWithScore);
+// const res= await fetchOnChainGraphData("vitalik.eth")
+// console.log(res)
+const onChainGraphUsers = await fetchOnChainGraphData("vitalik.eth");
+const onChainGraphUsersWithScore = onChainGraphUsers.map(user => calculatingScore(user));
+// console.log(onChainGraphUsersWithScore);
 
-// const finalOnChainGraphUsers = sortByScore(onChainGraphUsersWithScore);
-// const res=finalOnChainGraphUsers.slice(0,5)
-// console.log(res);
+const finalOnChainGraphUsers = sortByScore(onChainGraphUsersWithScore);
+const res=finalOnChainGraphUsers.slice(0,6)
+console.dir(res, {depth:null});

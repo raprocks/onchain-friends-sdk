@@ -1,7 +1,10 @@
 const defaultScoreMap = {
     
-    followedByOnLens: 5,
-    followingOnLens: 5,
+  tokenSent: 10,
+  tokenReceived:3,
+  followedByOnLens: 7,
+  followingOnLens: 5,
+  followingOnFarcaster: 5,
     
   };
   
@@ -28,6 +31,16 @@ const defaultScoreMap = {
     }
     if (user.follows?.followedOnLens) {
       score += scoreMap.followedByOnLens;
+    }
+    if (user.follows?.followingOnFarcaster) {
+      score += scoreMap.followingOnFarcaster;
+    }
+    
+    if (user.tokenTransfers?.sent) {
+      score += scoreMap.tokenSent;
+    }
+    if (user.tokenTransfers?.received) {
+      score += scoreMap.tokenReceived;
     }
     
     

@@ -1,4 +1,5 @@
 import { init, fetchQuery } from "@airstack/node"; // or @airstack/airstack-react for frontend javascript
+import formatTokenReceivedData from "../utils/formatTokenReceivedData.js";
 
 // get your API key at https://app.airstack.xyz/profile-settings/api-keys
 init("118f7b49bcf804ce9af37bbfe3cad9f24");
@@ -102,7 +103,9 @@ const fetchTokenReceived = async (address, existingUsers = []) => {
       );
 
       const tokenTransfer = [...ethData, ...polygonData, ...baseData];
-      recommendedUsers = tokenTransfer;
+      recommendedUsers = [
+        ...formatTokenReceivedData(tokenTransfer, recommendedUsers),
+      ];
       if (!hasNextPage) {
         break;
       } else {
