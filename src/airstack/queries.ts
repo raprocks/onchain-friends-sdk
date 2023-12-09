@@ -163,3 +163,69 @@ query MyQuery($user: Identity!) {
   }
 }
 `;
+
+export const tokenSentQuery=`
+query TokenSent($user: Identity!) {
+    Ethereum: TokenTransfers(
+      input: {filter: {from: {_eq: $user}}, blockchain: ethereum, limit: 200}
+    ) {
+      TokenTransfer {
+        account: to {
+          addresses
+          socials{
+            dappName
+            blockchain
+            profileName
+            profileImage
+            profileTokenId
+            profileTokenAddress
+          }
+          xmtp {
+            isXMTPEnabled
+          }
+        }
+      }
+    }
+    Polygon: TokenTransfers(
+      input: {filter: {from: {_eq: $user}}, blockchain: polygon, limit: 200}
+    ) {
+      TokenTransfer {
+        account: to {
+          addresses
+          socials{
+            dappName
+            blockchain
+            profileName
+            profileImage
+            profileTokenId
+            profileTokenAddress
+          }
+          xmtp {
+            isXMTPEnabled
+          }
+        }
+      }
+    }
+    Base: TokenTransfers(
+      input: {filter: {from: {_eq: $user}}, blockchain: base, limit: 200}
+    ) {
+      TokenTransfer {
+        account: to {
+          addresses
+          socials {
+            dappName
+            blockchain
+            profileName
+            profileImage
+            profileTokenId
+            profileTokenAddress
+          }
+          xmtp {
+            isXMTPEnabled
+          }
+        }
+      }
+    }
+  }
+`;
+
