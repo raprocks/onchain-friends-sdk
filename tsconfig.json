@@ -108,7 +108,7 @@
         "skipDefaultLibCheck": true /* Skip type checking .d.ts files that are included with TypeScript. */,
         "skipLibCheck": true /* Skip type checking all .d.ts files. */
     },
-    "include": ["src/types/global.d.ts", "src/**/*.ts"],
+    "include": ["src/types/global.d.ts", "src/**/*.ts", "src/test_as/fetch.js"],
     "ts-node": {
         "files": true
     }
