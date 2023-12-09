@@ -37,3 +37,44 @@ query MyQuery($user: Identity!) {
     }
   }
 `;
+
+
+export const lensFollowerQuery=`
+query MyQuery($user: Identity!) {
+  SocialFollowers(
+    input: {filter: {identity: {_eq: $user}, dappName: {_eq: lens}}, blockchain: ALL, limit: 50}
+  ) {
+    Follower {
+      followerAddress {
+        addresses
+        domains {
+          name
+          isPrimary
+        }
+        socials {
+          dappName
+          blockchain
+          profileName
+          profileImage
+          profileTokenId
+          profileTokenAddress
+        }
+        xmtp {
+          isXMTPEnabled
+        }
+        mutualFollowing: socialFollowings(
+          input: {filter: {identity: {_eq: $user}, dappName: {_eq: lens}}}
+        ) {
+          Following {
+            followingAddress {
+              socials {
+                profileName
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`;
