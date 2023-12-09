@@ -1,11 +1,6 @@
 import { Client } from "@xmtp/xmtp-js";
-
+import { Wallet } from "ethers";
 // You'll want to replace this with a wallet from your application
-// const wallet = new Wallet("4d06d3f0bdae95c453412ce6fbb3df5fd300ae87e11250625b1997c9a9ac82eb");
-// console.log("Wallet address: " + wallet.address);
-
-// const xmtp = await Client.create(wallet, { env: "dev" });
-// console.log("Client created", xmtp.address);
 
 export const sendInvite = async (client: Client, toAddress: string) => {
   const isIdentityCreated = await client.canMessage(toAddress);
@@ -24,3 +19,19 @@ export const sendInvite = async (client: Client, toAddress: string) => {
   console.log(`Message sent: "${message.content}"`);
   return true;
 };
+
+if (require.main === module) {
+  const wallet = new Wallet(
+    "4d06d3f0bdae95c453412ce6fbb3df5fd300ae87e11250625b1997c9a9ac82eb",
+  );
+  console.log("Wallet address: " + wallet.address);
+
+  Client.create(wallet, { env: "production" })
+    .then((xmtp) => {
+      console.log("Client created", xmtp.address);
+      sendInvite(xmtp, "0x27b721B321873BaC51b1138C0310695e421fC46b")
+        .then((res) => console.log("Done: ", res))
+        .catch(console.error);
+    })
+    .catch(console.error);
+}
