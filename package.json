@@ -5,6 +5,9 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "repository": {
+    "url": "https://github.com/raprocks/ethindia-2023"
+  },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "clean": "rimraf dist node_modules .tsbuildinfo",
