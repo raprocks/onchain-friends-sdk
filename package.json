@@ -27,6 +27,7 @@
     "ethers": "^5.7.0",
     "typescript": "^5.2.2"
   },
+  "private": "false",
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
     "@total-typescript/ts-reset": "^0.5.1",
