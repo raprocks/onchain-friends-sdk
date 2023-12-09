@@ -6,11 +6,7 @@ query MyQuery($user: Identity!) {
       Following {
         followingAddress {
           addresses
-          domains {
-            name
-            isPrimary
-          }
-          socials {
+          socials(input: {filter: {dappName: {_eq: lens}}}) {
             dappName
             blockchain
             profileName
@@ -21,23 +17,11 @@ query MyQuery($user: Identity!) {
           xmtp {
             isXMTPEnabled
           }
-          mutualFollower: socialFollowers(
-            input: {filter: {identity: {_eq: $user}, dappName: {_eq: lens}}}
-          ) {
-            Follower {
-              followerAddress {
-                socials {
-                  profileName
-                }
-              }
-            }
-          }
         }
       }
     }
   }
 `;
-
 
 export const lensFollowerQuery=`
 query MyQuery($user: Identity!) {
@@ -47,11 +31,7 @@ query MyQuery($user: Identity!) {
     Follower {
       followerAddress {
         addresses
-        domains {
-          name
-          isPrimary
-        }
-        socials {
+        socials(input: {filter: {dappName: {_eq: lens}}}) {
           dappName
           blockchain
           profileName
@@ -61,17 +41,6 @@ query MyQuery($user: Identity!) {
         }
         xmtp {
           isXMTPEnabled
-        }
-        mutualFollowing: socialFollowings(
-          input: {filter: {identity: {_eq: $user}, dappName: {_eq: lens}}}
-        ) {
-          Following {
-            followingAddress {
-              socials {
-                profileName
-              }
-            }
-          }
         }
       }
     }
