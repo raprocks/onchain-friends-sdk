@@ -1,5 +1,11 @@
 # @onchain/friends
 
+## 0.7.0
+
+### Minor Changes
+
+- throw entire error
+
 ## 0.6.0
 
 ### Minor Changes
