@@ -1,7 +1,11 @@
 import { Client } from "@xmtp/xmtp-js";
 // You'll want to replace this with a wallet from your application
 
-export const sendInvite = async (client: Client, toAddress: string) => {
+export const sendInvite = async (
+  client: Client,
+  toAddress: string,
+  messageContent: string,
+) => {
   const isIdentityCreated = await client.canMessage(toAddress);
   console.log("Can message: " + isIdentityCreated);
   if (!isIdentityCreated) {
@@ -14,9 +18,7 @@ export const sendInvite = async (client: Client, toAddress: string) => {
     console.log("Conversation not created");
     return false;
   }
-  const message = await conversation.send(
-    `${new Date().toISOString()} gm from the quickstart.`,
-  );
+  const message = await conversation.send(messageContent);
   console.log(`Message sent: "${message.content}"`);
   return true;
 };

@@ -19,14 +19,17 @@ export default class Airstack {
     init(airstackAPIKey);
   }
 
-  async fetchData(query: string, queryVariables?: Record<string, never>) {
-    return await fetchQuery(query, queryVariables);
+  async fetchData<T extends Record<string, unknown>>(
+    query: string,
+    queryVariables?: Record<string, string | number | string[] | number[]>,
+  ) {
+    return (await fetchQuery(query, queryVariables)) as QueryResponse<T>;
   }
 
   async getLensFollowing(address: string) {
-    const { data, error } = (await fetchQuery(lensFollowingQuery, {
+    const { data, error } = await this.fetchData(lensFollowingQuery, {
       user: address,
-    })) as QueryResponse;
+    });
     if (error) {
       throw new Error(error.message);
     }
@@ -34,9 +37,9 @@ export default class Airstack {
   }
 
   async getLensFollower(address: string) {
-    const { data, error } = (await fetchQuery(lensFollowerQuery, {
+    const { data, error } = await this.fetchData(lensFollowerQuery, {
       user: address,
-    })) as QueryResponse;
+    });
     if (error) {
       throw new Error(error.message);
     }
@@ -44,9 +47,9 @@ export default class Airstack {
   }
 
   async getFarcasterFollower(address: string) {
-    const { data, error } = (await fetchQuery(farcasterFollowerQuery, {
+    const { data, error } = await this.fetchData(farcasterFollowerQuery, {
       user: address,
-    })) as QueryResponse;
+    });
     if (error) {
       throw new Error(error.message);
     }
@@ -54,9 +57,9 @@ export default class Airstack {
   }
 
   async getFarcasterFollowing(address: string) {
-    const { data, error } = (await fetchQuery(farcasterFollowingQuery, {
+    const { data, error } = await this.fetchData(farcasterFollowingQuery, {
       user: address,
-    })) as QueryResponse;
+    });
     if (error) {
       throw new Error(error.message);
     }
@@ -64,9 +67,9 @@ export default class Airstack {
   }
 
   async getTokenReceive(address: string) {
-    const { data, error } = (await fetchQuery(tokenReceiveQuery, {
+    const { data, error } = await this.fetchData(tokenReceiveQuery, {
       user: address,
-    })) as QueryResponse;
+    });
     if (error) {
       throw new Error(error.message);
     }
@@ -74,9 +77,9 @@ export default class Airstack {
   }
 
   async getTokenSent(address: string) {
-    const { data, error } = (await fetchQuery(tokenSentQuery, {
+    const { data, error } = await this.fetchData(tokenSentQuery, {
       user: address,
-    })) as QueryResponse;
+    });
     if (error) {
       throw new Error(error.message);
     }

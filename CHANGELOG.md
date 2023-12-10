@@ -1,5 +1,19 @@
 # @onchain/friends
 
+## 0.4.0
+
+### Minor Changes
+
+- 829fecd: add lens following query for airstack
+- add generic type to the function
+- 6f18d6b: Token sent query added
+- ff1d51b: lens followers query added
+- 4ab27e1: Minor changes in social filter query
+- 9aee5ce: remove unneccessary params from queries
+- d232595: Farcaster follower query added
+- dbd95f1: Farcaster following query added
+- 98e9099: Token receive query added
+
 ## 0.3.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 import { Wallet } from "ethers";
 import { Client } from "@xmtp/xmtp-js";
-import { sendInvite } from ".";
+import OnChainFriendsSDK from ".";
 import { describe, expect, it } from "vitest";
 
 describe(
@@ -15,9 +15,12 @@ describe(
       const xmtpClient = await Client.create(wallet, { env: "dev" });
 
       console.log("Client created", xmtpClient.address);
-      const res = await sendInvite(
+
+      const sdk = new OnChainFriendsSDK("118f7b49bcf804ce9af37bbfe3cad9f24");
+      const res = await sdk.inviteUser(
         xmtpClient,
         "0x27b721B321873BaC51b1138C0310695e421fC46b",
+        "Inviting you to the App that i buidl'ed :)",
       );
       expect(res).toBe(true);
     });

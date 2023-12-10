@@ -26,7 +26,7 @@ query MyQuery($user: Identity!) {
 export const lensFollowerQuery = `
 query MyQuery($user: Identity!) {
   SocialFollowers(
-    input: {filter: {identity: {_eq: $user}, dappName: {_eq: lens}}, blockchain: ALL, limit: 50}
+    input: {filter: {identity: {_eq: $user}, dappName: {_eq: lens}}, blockchain: ALL, limit: 200}
   ) {
     Follower {
       followerAddress {
