@@ -27,7 +27,28 @@ export default class Airstack {
   }
 
   async getLensFollowing(address: string) {
-    const { data, error } = await this.fetchData(lensFollowingQuery, {
+    const { data, error } = await this.fetchData<{
+      data: {
+        SocialFollowings: {
+          Following: Array<{
+            followingAddress: {
+              addresses: Array<string>;
+              socials: Array<{
+                dappName: string;
+                blockchain: string;
+                profileName: string;
+                profileImage: string;
+                profileTokenId: string;
+                profileTokenAddress: string;
+              }>;
+              xmtp?: Array<{
+                isXMTPEnabled: boolean;
+              }>;
+            };
+          }>;
+        };
+      };
+    }>(lensFollowingQuery, {
       user: address,
     });
     if (error) {
@@ -37,7 +58,28 @@ export default class Airstack {
   }
 
   async getLensFollower(address: string) {
-    const { data, error } = await this.fetchData(lensFollowerQuery, {
+    const { data, error } = await this.fetchData<{
+      data: {
+        SocialFollowers: {
+          Follower: Array<{
+            followerAddress: {
+              addresses: Array<string>;
+              socials: Array<{
+                dappName: string;
+                blockchain: string;
+                profileName: string;
+                profileImage: string;
+                profileTokenId: string;
+                profileTokenAddress: string;
+              }>;
+              xmtp: Array<{
+                isXMTPEnabled: boolean;
+              }>;
+            };
+          }>;
+        };
+      };
+    }>(lensFollowerQuery, {
       user: address,
     });
     if (error) {
@@ -47,7 +89,28 @@ export default class Airstack {
   }
 
   async getFarcasterFollower(address: string) {
-    const { data, error } = await this.fetchData(farcasterFollowerQuery, {
+    const { data, error } = await this.fetchData<{
+      data: {
+        SocialFollowers: {
+          Follower: Array<{
+            followerAddress: {
+              addresses: Array<string>;
+              socials: Array<{
+                dappName: string;
+                blockchain: string;
+                profileName: string;
+                profileImage: string;
+                profileTokenId: string;
+                profileTokenAddress: string;
+              }>;
+              xmtp?: Array<{
+                isXMTPEnabled: boolean;
+              }>;
+            };
+          }>;
+        };
+      };
+    }>(farcasterFollowerQuery, {
       user: address,
     });
     if (error) {
@@ -57,7 +120,28 @@ export default class Airstack {
   }
 
   async getFarcasterFollowing(address: string) {
-    const { data, error } = await this.fetchData(farcasterFollowingQuery, {
+    const { data, error } = await this.fetchData<{
+      data: {
+        SocialFollowings: {
+          Following: Array<{
+            followingAddress: {
+              addresses: Array<string>;
+              socials: Array<{
+                dappName: string;
+                blockchain: string;
+                profileName: string;
+                profileImage: string;
+                profileTokenId: string;
+                profileTokenAddress: string;
+              }>;
+              xmtp?: Array<{
+                isXMTPEnabled: boolean;
+              }>;
+            };
+          }>;
+        };
+      };
+    }>(farcasterFollowingQuery, {
       user: address,
     });
     if (error) {
@@ -67,7 +151,64 @@ export default class Airstack {
   }
 
   async getTokenReceive(address: string) {
-    const { data, error } = await this.fetchData(tokenReceiveQuery, {
+    const { data, error } = await this.fetchData<{
+      data: {
+        Ethereum: {
+          TokenTransfer: Array<{
+            account: {
+              addresses: Array<string>;
+              socials: Array<{
+                dappName: string;
+                blockchain: string;
+                profileName: string;
+                profileImage: string;
+                profileTokenId: string;
+                profileTokenAddress: string;
+              }>;
+              xmtp: Array<{
+                isXMTPEnabled: boolean;
+              }>;
+            };
+          }>;
+        };
+        Polygon: {
+          TokenTransfer: Array<{
+            account: {
+              addresses: Array<string>;
+              socials: Array<{
+                dappName: string;
+                blockchain: string;
+                profileName: string;
+                profileImage: string;
+                profileTokenId: string;
+                profileTokenAddress: string;
+              }>;
+              xmtp: Array<{
+                isXMTPEnabled: boolean;
+              }>;
+            };
+          }>;
+        };
+        Base: {
+          TokenTransfer: Array<{
+            account: {
+              addresses: Array<string>;
+              socials: Array<{
+                dappName: string;
+                blockchain: string;
+                profileName: string;
+                profileImage: string;
+                profileTokenId: string;
+                profileTokenAddress: string;
+              }>;
+              xmtp: Array<{
+                isXMTPEnabled: boolean;
+              }>;
+            };
+          }>;
+        };
+      };
+    }>(tokenReceiveQuery, {
       user: address,
     });
     if (error) {
@@ -77,7 +218,64 @@ export default class Airstack {
   }
 
   async getTokenSent(address: string) {
-    const { data, error } = await this.fetchData(tokenSentQuery, {
+    const { data, error } = await this.fetchData<{
+      data: {
+        Ethereum: {
+          TokenTransfer: Array<{
+            account: {
+              addresses: Array<string>;
+              socials?: Array<{
+                dappName: string;
+                blockchain: string;
+                profileName: string;
+                profileImage: string;
+                profileTokenId: string;
+                profileTokenAddress: string;
+              }>;
+              xmtp?: Array<{
+                isXMTPEnabled: boolean;
+              }>;
+            };
+          }>;
+        };
+        Polygon: {
+          TokenTransfer: Array<{
+            account: {
+              addresses: Array<string>;
+              socials?: Array<{
+                dappName: string;
+                blockchain: string;
+                profileName: string;
+                profileImage: string;
+                profileTokenId: string;
+                profileTokenAddress: string;
+              }>;
+              xmtp?: Array<{
+                isXMTPEnabled: boolean;
+              }>;
+            };
+          }>;
+        };
+        Base: {
+          TokenTransfer: Array<{
+            account: {
+              addresses: Array<string>;
+              socials?: Array<{
+                dappName: string;
+                blockchain: string;
+                profileName: string;
+                profileImage: string;
+                profileTokenId: string;
+                profileTokenAddress: string;
+              }>;
+              xmtp?: Array<{
+                isXMTPEnabled: boolean;
+              }>;
+            };
+          }>;
+        };
+      };
+    }>(tokenSentQuery, {
       user: address,
     });
     if (error) {
