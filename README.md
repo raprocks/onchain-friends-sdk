@@ -33,14 +33,22 @@ we provide all functions on a promise based interface.
 you are free to use async/await or ".then" chaining
 
 ```javascript
+// find friends on chain using airstack!
 friendFetcher
-  .connectWithFriend(userId)
-  .then((connection) => {
-    // Handle the connection
+  .getFarcasterFollower("<users_wallet_address>")
+  .then((res) => {
+    // Handle the results
   })
   .catch((error) => {
     // Handle errors
   });
+
+// use xmtp client to invite them to a conversation
+friendFetcher.inviteUser(
+  xmtpClient, // a instance of a xmtp client that can send invites to the recepient
+  "0x27b721B321873BaC51b1138C0310695e421fC46b", // receipient address
+  "Inviting you to the App that i buidl'ed :)", // custom message
+);
 ```
 
 ### Contributing
@@ -68,4 +76,4 @@ This SDK is licensed under the MIT License.
 - [ ] more sources
 - [ ] Streamline SDK
 - [ ] implement paginated queries to get entire list of users // might take time
-- [ ] 
+- [ ] most recommended friends from accumulated users based on different scoring mechanisms

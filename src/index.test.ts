@@ -12,11 +12,16 @@ describe(
       );
       console.log("Wallet address: " + wallet.address);
 
-      const xmtpClient = await Client.create(wallet, { env: "dev" });
+      const xmtpClient = await Client.create(wallet, { env: "production" });
 
       console.log("Client created", xmtpClient.address);
 
       const sdk = new OnChainFriendsSDK("118f7b49bcf804ce9af37bbfe3cad9f24");
+      const users = await sdk.getLensFollower(
+        "0x27b721B321873BaC51b1138C0310695e421fC46b",
+      );
+
+      console.log(users);
       const res = await sdk.inviteUser(
         xmtpClient,
         "0x27b721B321873BaC51b1138C0310695e421fC46b",
