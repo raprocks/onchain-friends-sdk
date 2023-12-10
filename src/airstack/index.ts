@@ -52,7 +52,7 @@ export default class Airstack {
       user: address,
     });
     if (error) {
-      throw new Error(error.message);
+      throw error;
     }
     const userData = data.SocialFollowings.Following.map(
       (e) => e.followingAddress,
@@ -85,7 +85,7 @@ export default class Airstack {
       user: address,
     });
     if (error) {
-      throw new Error(error.message);
+      throw error;
     }
     const userData = data.SocialFollowers.Follower.map(
       (e) => e.followerAddress,
@@ -118,7 +118,7 @@ export default class Airstack {
       user: address,
     });
     if (error) {
-      throw new Error(error.message);
+      throw error;
     }
     const userData = data.SocialFollowers.Follower.map(
       (e) => e.followerAddress,
@@ -151,7 +151,7 @@ export default class Airstack {
       user: address,
     });
     if (error) {
-      throw new Error(error.message);
+      throw error;
     }
     const userData = data.SocialFollowings.Following.map(
       (e) => e.followingAddress,
@@ -220,7 +220,7 @@ export default class Airstack {
       user: address,
     });
     if (error) {
-      throw new Error(error.message);
+      throw error;
     }
     const baseData = data.Base.TokenTransfer.map((e) => e.account);
     const ethereumData = data.Ethereum.TokenTransfer.map((e) => e.account);
@@ -294,7 +294,7 @@ export default class Airstack {
       user: address,
     });
     if (error) {
-      throw new Error(error.message);
+      throw error;
     }
     const baseData = data.Base.TokenTransfer.map((e) => e.account);
     const ethereumData = data.Ethereum.TokenTransfer.map((e) => e.account);
