@@ -60,6 +60,10 @@ For additional help or queries, please visit our documentation site or open an i
 
 This SDK is licensed under the MIT License.
 
-```
+##### TODO
 
-```
+- [ ] Better Docs
+- [ ] reactive interface for use with frontend
+- [ ] dynamic types for graphql
+- [ ] more sources
+- [ ] Streamline SDK
