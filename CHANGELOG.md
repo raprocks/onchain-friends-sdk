@@ -1,5 +1,16 @@
 # @onchain/friends
 
+## 0.5.0
+
+### Minor Changes
+
+- 7466886: add types to query results
+- 1ffa82c: accumulate existing users in an array to use for further processing
+
+### Patch Changes
+
+- e4a2f06: fix lint script
+
 ## 0.4.0
 
 ### Minor Changes
