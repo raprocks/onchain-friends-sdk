@@ -16,7 +16,7 @@
     "format:check": "prettier --check src/**/*",
     "format": "prettier --write src/**/*",
     "lint:fix": "eslint src/**/* --fix",
-    "lint": "tsc && eslint . --ext .ts && tsc --noEmit",
+    "lint": "tsc --noEmit && eslint . --ext .ts",
     "ci": "pnpm run lint && pnpm run test && pnpm run build",
     "release": "pnpm run lint && pnpm run test && pnpm run build && changeset publish"
   },
