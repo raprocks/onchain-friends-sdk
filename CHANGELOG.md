@@ -1,5 +1,11 @@
 # @onchain/friends
 
+## 0.6.0
+
+### Minor Changes
+
+- hotfix: type error
+
 ## 0.5.0
 
 ### Minor Changes
