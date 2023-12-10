@@ -11,12 +11,14 @@ import { QueryResponse } from "../types/query";
 
 export default class Airstack {
   APIKEY: string;
+  existingUsers: object[];
   /**
    *
    */
   constructor(airstackAPIKey: string) {
     this.APIKEY = airstackAPIKey;
     init(airstackAPIKey);
+    this.existingUsers = [];
   }
 
   async fetchData<T extends Record<string, unknown>>(
@@ -54,7 +56,11 @@ export default class Airstack {
     if (error) {
       throw new Error(error.message);
     }
-    return data;
+    const userData = data.data.SocialFollowings.Following.map(
+      (e) => e.followingAddress,
+    );
+    this.existingUsers = [...this.existingUsers, ...userData];
+    return userData;
   }
 
   async getLensFollower(address: string) {
@@ -85,7 +91,11 @@ export default class Airstack {
     if (error) {
       throw new Error(error.message);
     }
-    return data;
+    const userData = data.data.SocialFollowers.Follower.map(
+      (e) => e.followerAddress,
+    );
+    this.existingUsers = [...this.existingUsers, ...userData];
+    return userData;
   }
 
   async getFarcasterFollower(address: string) {
@@ -116,7 +126,11 @@ export default class Airstack {
     if (error) {
       throw new Error(error.message);
     }
-    return data;
+    const userData = data.data.SocialFollowers.Follower.map(
+      (e) => e.followerAddress,
+    );
+    this.existingUsers = [...this.existingUsers, ...userData];
+    return userData;
   }
 
   async getFarcasterFollowing(address: string) {
@@ -147,7 +161,11 @@ export default class Airstack {
     if (error) {
       throw new Error(error.message);
     }
-    return data;
+    const userData = data.data.SocialFollowings.Following.map(
+      (e) => e.followingAddress,
+    );
+    this.existingUsers = [...this.existingUsers, ...userData];
+    return userData;
   }
 
   async getTokenReceive(address: string) {
@@ -214,7 +232,16 @@ export default class Airstack {
     if (error) {
       throw new Error(error.message);
     }
-    return data;
+    const baseData = data.data.Base.TokenTransfer.map((e) => e.account);
+    const ethereumData = data.data.Ethereum.TokenTransfer.map((e) => e.account);
+    const PolygonData = data.data.Polygon.TokenTransfer.map((e) => e.account);
+    this.existingUsers = [
+      ...this.existingUsers,
+      ...baseData,
+      ...ethereumData,
+      ...PolygonData,
+    ];
+    return [...baseData, ...ethereumData, ...PolygonData];
   }
 
   async getTokenSent(address: string) {
@@ -281,6 +308,15 @@ export default class Airstack {
     if (error) {
       throw new Error(error.message);
     }
-    return data;
+    const baseData = data.data.Base.TokenTransfer.map((e) => e.account);
+    const ethereumData = data.data.Ethereum.TokenTransfer.map((e) => e.account);
+    const PolygonData = data.data.Polygon.TokenTransfer.map((e) => e.account);
+    this.existingUsers = [
+      ...this.existingUsers,
+      ...baseData,
+      ...ethereumData,
+      ...PolygonData,
+    ];
+    return [...baseData, ...ethereumData, ...PolygonData];
   }
 }

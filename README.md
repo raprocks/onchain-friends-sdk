@@ -67,3 +67,4 @@ This SDK is licensed under the MIT License.
 - [ ] dynamic types for graphql
 - [ ] more sources
 - [ ] Streamline SDK
+- [ ] implement paginated queries to get entire list of users // might take time
